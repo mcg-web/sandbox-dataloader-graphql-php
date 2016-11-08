@@ -250,7 +250,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mcg-web/graphql-php.git",
-                "reference": "4eb032d774f7ced7f1800890144ed3b2fe9c6179"
+                "reference": "c9b0534058b399579a25a5c4b3c3c8e2628635e8"
             },
             "require": {
                 "php": ">=5.4,<8.0-DEV"
@@ -280,7 +280,7 @@
                 "API",
                 "graphql"
             ],
-            "time": "2016-11-06 08:36:29"
+            "time": "2016-11-08 22:06:03"
         }
     ],
     "packages-dev": [],
