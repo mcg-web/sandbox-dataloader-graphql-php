@@ -1,0 +1,21 @@
+{
+    "name": "mcg-web/sandox-daraloader-graphql-php",
+    "type": "project",
+    "repositories": {
+        "webonyx/graphql-php": {
+            "type": "git",
+            "url": "https://github.com/mcg-web/graphql-php.git"
+        }
+    },
+    "require": {
+        "webonyx/graphql-php": "dev-promise",
+        "overblog/dataloader-php": "dev-master"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jeremiah VALERIE",
+            "email": "jeremiah@over-blog.com"
+        }
+    ]
+}
