@@ -79,7 +79,7 @@ $schema = new Schema(['query' => $queryType]);
 $data = GraphQL::execute($schema, '{ character1: character(id: "1000") { name friends { name }} character2: character(id: "1002") { name friends { name }}}');
 
 echo "Without DataLoader:\n\n";
-echo "Response:\n".var_export($data, true)."\n";
+echo "Response:\n".json_encode($data, JSON_PRETTY_PRINT)."\n";
 echo "Resolver calls: ".var_export($calls, true);
 
 echo "\n\n\n";
