@@ -1,7 +1,6 @@
 <?php
 
 use GraphQL\GraphQL;
-use GraphQL\Promise\PromiseInterface;
 use GraphQL\Schema;
 use GraphQL\Tests\StarWarsData;
 use GraphQL\Type\Definition\NonNull;
@@ -15,73 +14,27 @@ require __DIR__.'/vendor/autoload.php';
 require __DIR__.'/vendor/webonyx/graphql-php/tests/StarWarsData.php';
 
 
-class PromiseWrapper implements PromiseInterface
+class PromiseWrapper extends \GraphQL\Promise\PromiseWrapper
 {
     /**
      * @var DataLoader
      */
-    public static $dataLoader;
+    private static $dataLoader;
 
-    /**
-     * @var Promise
-     */
-    private $promise;
-
-    /**
-     * PromiseWrapper constructor.
-     * @param Promise $promise
-     */
-    public function __construct($promise)
+    public static function setDataLoader(DataLoader $dataLoader)
     {
-        $this->promise = $promise;
-    }
-
-    /**
-     * @param Promise $promise
-     * @return self
-     */
-    public static function wrap($promise)
-    {
-        return new static($promise);
+        self::$dataLoader = $dataLoader;
     }
 
     /**
      * Waits until the promise completes if possible.
      *
      * @return mixed
-     * @throws \LogicException if the promise has no wait function or if the
-     *                         promise does not settle after waiting.
+     * @throws \LogicException if the promise has no wait function.
      */
     public function wait()
     {
-        return static::$dataLoader->await($this->promise);
-    }
-
-    /**
-     * Appends fulfillment and rejection handlers to the promise, and returns
-     * a new promise resolving to the return value of the called handler.
-     *
-     * @param callable $onFulfilled Invoked when the promise fulfills
-     * @param callable $onRejected Invoked when the promise is rejected
-     *
-     * @return $this
-     */
-    public function then(
-        callable $onFulfilled = null,
-        callable $onRejected = null
-    )
-    {
-        $this->promise = $this->promise->then($onFulfilled, $onRejected);
-
-        return $this;
-    }
-
-    /**
-     * @return Promise
-     */
-    public function getPromise()
-    {
-        return $this->promise;
+        return static::$dataLoader->await($this->getWrappedPromise());
     }
 }
 
@@ -97,7 +50,7 @@ $dataLoader = new DataLoader(new BatchLoadFn(
     }
 ));
 
-PromiseWrapper::$dataLoader = $dataLoader;
+PromiseWrapper::setDataLoader($dataLoader);
 
 /**
  * This implements the following type system shorthand:
