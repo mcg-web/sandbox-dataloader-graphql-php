@@ -17,16 +17,6 @@ require __DIR__.'/vendor/webonyx/graphql-php/tests/StarWarsData.php';
 class PromiseWrapper extends \GraphQL\Promise\PromiseWrapper
 {
     /**
-     * @var DataLoader
-     */
-    private static $dataLoader;
-
-    public static function setDataLoader(DataLoader $dataLoader)
-    {
-        self::$dataLoader = $dataLoader;
-    }
-
-    /**
      * Waits until the promise completes if possible.
      *
      * @return mixed
@@ -34,7 +24,7 @@ class PromiseWrapper extends \GraphQL\Promise\PromiseWrapper
      */
     public function wait()
     {
-        return static::$dataLoader->await($this->getWrappedPromise());
+        return DataLoader::await($this->getWrappedPromise());
     }
 }
 
@@ -49,9 +39,6 @@ $dataLoader = new DataLoader(new BatchLoadFn(
         return \React\Promise\all(array_values($characters));
     }
 ));
-
-PromiseWrapper::setDataLoader($dataLoader);
-
 /**
  * This implements the following type system shorthand:
  *   type Character : Character {
