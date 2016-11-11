@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/overblog/dataloader-php.git",
-                "reference": "66d703403bfff1df577541b9d5c5b35974cfbacf"
+                "reference": "0c84e81a18837f0923d3ae927423ef27b782ca37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overblog/dataloader-php/zipball/66d703403bfff1df577541b9d5c5b35974cfbacf",
-                "reference": "66d703403bfff1df577541b9d5c5b35974cfbacf",
+                "url": "https://api.github.com/repos/overblog/dataloader-php/zipball/0c84e81a18837f0923d3ae927423ef27b782ca37",
+                "reference": "0c84e81a18837f0923d3ae927423ef27b782ca37",
                 "shasum": ""
             },
             "require": {
@@ -38,7 +38,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2016-11-10 15:14:44"
+            "time": "2016-11-11 18:30:35"
         },
         {
             "name": "psr/cache",
