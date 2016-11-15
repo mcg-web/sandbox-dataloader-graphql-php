@@ -30,14 +30,15 @@ class PromiseWrapper extends \GraphQL\Promise\PromiseWrapper
 
 
 $calls = 0;
-$batchLoadFn = function ($ids) use (&$calls) {
+$promiseFactory = new ReactPromiseFactory();
+$batchLoadFn = function ($ids) use (&$calls, $promiseFactory) {
     ++$calls;
     $allCharacters = StarWarsData::humans() + StarWarsData::droids();
     $characters = array_intersect_key($allCharacters, array_flip($ids));
 
-    return \React\Promise\all(array_values($characters));
+    return $promiseFactory->createAll(array_values($characters));
 };
-$dataLoader = new DataLoader($batchLoadFn, new ReactPromiseFactory());
+$dataLoader = new DataLoader($batchLoadFn, $promiseFactory);
 /**
  * This implements the following type system shorthand:
  *   type Character : Character {
