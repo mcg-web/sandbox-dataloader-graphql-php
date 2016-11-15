@@ -6,6 +6,7 @@ use GraphQL\Tests\StarWarsData;
 use GraphQL\Type\Definition\NonNull;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
+use McGWeb\PromiseFactory\Factory\ReactPromiseFactory;
 use Overblog\DataLoader\DataLoader;
 use React\Promise\Promise;
 
@@ -29,13 +30,14 @@ class PromiseWrapper extends \GraphQL\Promise\PromiseWrapper
 
 
 $calls = 0;
-$dataLoader = new DataLoader(function ($ids) use (&$calls) {
+$batchLoadFn = function ($ids) use (&$calls) {
     ++$calls;
     $allCharacters = StarWarsData::humans() + StarWarsData::droids();
     $characters = array_intersect_key($allCharacters, array_flip($ids));
 
     return \React\Promise\all(array_values($characters));
-});
+};
+$dataLoader = new DataLoader($batchLoadFn, new ReactPromiseFactory());
 /**
  * This implements the following type system shorthand:
  *   type Character : Character {

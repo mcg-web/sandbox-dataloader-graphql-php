@@ -4,26 +4,69 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4ecb24fe0b594546218c3829637f8138",
-    "content-hash": "255e4e3cc0c7fbb39cd21ad068542a43",
+    "hash": "4cb0f2d15f322207ac8a628a45255002",
+    "content-hash": "2866bd5b2c43c5788a146971c04b6b07",
     "packages": [
+        {
+            "name": "mcg-web/promise-factory",
+            "version": "v0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mcg-web/promise-factory.git",
+                "reference": "036b68fabaa923c1572e132ae4314aaaf0b01ce2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mcg-web/promise-factory/zipball/036b68fabaa923c1572e132ae4314aaaf0b01ce2",
+                "reference": "036b68fabaa923c1572e132ae4314aaaf0b01ce2",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5|^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.1|^5.1"
+            },
+            "suggest": {
+                "guzzlehttp/promises": "To use Guzzle promise factory",
+                "react/promise": "To use ReactPhp promise factory"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "McGWeb\\PromiseFactory\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "This library tries to create a simple promise factory standard while waiting for a psr.",
+            "keywords": [
+                "Guzzle",
+                "factory",
+                "promise",
+                "react"
+            ],
+            "time": "2016-11-15 09:03:43"
+        },
         {
             "name": "overblog/dataloader-php",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overblog/dataloader-php.git",
-                "reference": "0c84e81a18837f0923d3ae927423ef27b782ca37"
+                "reference": "8f6b8116d900b03519af819df9b425ebe98b1222"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overblog/dataloader-php/zipball/0c84e81a18837f0923d3ae927423ef27b782ca37",
-                "reference": "0c84e81a18837f0923d3ae927423ef27b782ca37",
+                "url": "https://api.github.com/repos/overblog/dataloader-php/zipball/8f6b8116d900b03519af819df9b425ebe98b1222",
+                "reference": "8f6b8116d900b03519af819df9b425ebe98b1222",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.5|^7.0",
-                "react/promise": "^2.4"
+                "mcg-web/promise-factory": "^0.2",
+                "php": "^5.5|^7.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.1|^5.1"
@@ -38,100 +81,13 @@
             "license": [
                 "MIT"
             ],
-            "time": "2016-11-11 18:30:35"
-        },
-        {
-            "name": "psr/cache",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/cache.git",
-                "reference": "d11b50ad223250cf17b86e38383413f5a6764bf8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/cache/zipball/d11b50ad223250cf17b86e38383413f5a6764bf8",
-                "reference": "d11b50ad223250cf17b86e38383413f5a6764bf8",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\Cache\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "Common interface for caching libraries",
+            "description": "DataLoaderPhp is a generic utility to be used as part of your application's data fetching layer to provide a simplified and consistent API over various remote data sources such as databases or web services via batching and caching.",
             "keywords": [
-                "cache",
-                "psr",
-                "psr-6"
+                "Batching",
+                "caching",
+                "dataLoader"
             ],
-            "time": "2016-08-06 20:24:11"
-        },
-        {
-            "name": "psr/log",
-            "version": "1.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/log.git",
-                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
-                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\Log\\": "Psr/Log/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "Common interface for logging libraries",
-            "homepage": "https://github.com/php-fig/log",
-            "keywords": [
-                "log",
-                "psr",
-                "psr-3"
-            ],
-            "time": "2016-10-10 12:19:37"
+            "time": "2016-11-15 09:18:59"
         },
         {
             "name": "react/promise",
@@ -178,72 +134,6 @@
             "time": "2016-05-03 17:50:52"
         },
         {
-            "name": "symfony/cache",
-            "version": "v3.1.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/cache.git",
-                "reference": "a4bf05e93eecf1df96612ad0ccf49e03177b17b4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/cache/zipball/a4bf05e93eecf1df96612ad0ccf49e03177b17b4",
-                "reference": "a4bf05e93eecf1df96612ad0ccf49e03177b17b4",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.9",
-                "psr/cache": "~1.0",
-                "psr/log": "~1.0"
-            },
-            "provide": {
-                "psr/cache-implementation": "1.0"
-            },
-            "require-dev": {
-                "cache/integration-tests": "dev-master",
-                "doctrine/cache": "~1.6",
-                "predis/predis": "~1.0"
-            },
-            "suggest": {
-                "symfony/polyfill-apcu": "For using ApcuAdapter on HHVM"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Cache\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony implementation of PSR-6",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "caching",
-                "psr6"
-            ],
-            "time": "2016-09-25 08:27:07"
-        },
-        {
             "name": "webonyx/graphql-php",
             "version": "dev-promise",
             "source": {
@@ -286,8 +176,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "webonyx/graphql-php": 20,
-        "overblog/dataloader-php": 20
+        "overblog/dataloader-php": 20,
+        "webonyx/graphql-php": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

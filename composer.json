@@ -8,8 +8,9 @@
         }
     },
     "require": {
-        "webonyx/graphql-php": "dev-promise",
-        "overblog/dataloader-php": "dev-master"
+        "overblog/dataloader-php": "dev-master",
+        "react/promise": "^2.4",
+        "webonyx/graphql-php": "dev-promise"
     },
     "license": "MIT",
     "authors": [
