@@ -28,10 +28,11 @@ class PromiseWrapper extends \GraphQL\Promise\PromiseWrapper
     }
 }
 
-
 $calls = 0;
+$callsIds = [];
 $promiseFactory = new ReactPromiseFactory();
-$batchLoadFn = function ($ids) use (&$calls, $promiseFactory) {
+$batchLoadFn = function ($ids) use (&$calls, &$callsIds, $promiseFactory) {
+    $callsIds[] = $ids;
     ++$calls;
     $allCharacters = StarWarsData::humans() + StarWarsData::droids();
     $characters = array_intersect_key($allCharacters, array_flip($ids));
@@ -106,10 +107,24 @@ $queryType = new ObjectType([
 
 $schema = new Schema(['query' => $queryType]);
 
-$data = GraphQL::execute($schema, '{ character1: character(id: "1000") { name friends { name }} character2: character(id: "1002") { name friends { name }}}');
+$queries = [
+    '{ character1: character(id: "1000") { name friends { name }} character2: character(id: "1002") { name friends { name }}}',
+    '{ character1: character(id: "1000") { name } character2: character(id: "1002") { name }}'
+];
 
-echo "With DataLoader:\n\n";
-echo "Response:\n".json_encode($data, JSON_PRETTY_PRINT)."\n";
-echo "Resolver calls: ".var_export($calls, true);
+foreach ($queries as $query) {
+    $calls = 0;
+    $callsIds = [];
+    $dataLoader->clearAll();
 
-echo "\n\n\n";
+    $data = GraphQL::execute($schema, $query);
+
+    echo "With DataLoader:\n\n";
+    echo "Query: $query\n";
+    echo "Response:\n".json_encode($data, JSON_PRETTY_PRINT)."\n";
+    echo "Resolver calls: ".var_export($calls, true)."\n";
+    echo "calls ids: ".var_export($callsIds, true)."\n";
+
+    echo "\n\n";
+}
+
