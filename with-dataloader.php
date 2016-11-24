@@ -1,6 +1,7 @@
 <?php
 
 use GraphQL\GraphQL;
+use GraphQL\Promise\Adapter\ReactPromiseAdapter;
 use GraphQL\Schema;
 use GraphQL\Tests\StarWarsData;
 use GraphQL\Type\Definition\NonNull;
@@ -12,21 +13,6 @@ use React\Promise\Promise;
 
 require __DIR__.'/vendor/autoload.php';
 require __DIR__.'/vendor/webonyx/graphql-php/tests/StarWarsData.php';
-
-
-class PromiseWrapper extends \GraphQL\Promise\PromiseWrapper
-{
-    /**
-     * Waits until the promise completes if possible.
-     *
-     * @return mixed
-     * @throws \LogicException if the promise has no wait function.
-     */
-    public function wait()
-    {
-        return DataLoader::await($this->getWrappedPromise());
-    }
-}
 
 $calls = 0;
 $callsIds = [];
@@ -69,9 +55,9 @@ $characterType = new ObjectType([
                     };
 
                     if ($character instanceof Promise) {
-                        return PromiseWrapper::wrap($character->then($onFullFilled));
+                        return $character->then($onFullFilled);
                     } else {
-                        return PromiseWrapper::wrap($onFullFilled($character));
+                        return $onFullFilled($character);
                     }
                 },
             ),
@@ -99,11 +85,13 @@ $queryType = new ObjectType([
                 ]
             ],
             'resolve' => function ($root, $args) use ($dataLoader) {
-                return PromiseWrapper::wrap($dataLoader->load($args['id']));
+                return $dataLoader->load($args['id']);
             },
         ],
     ]
 ]);
+
+GraphQL::setPromiseAdapter(new ReactPromiseAdapter());
 
 $schema = new Schema(['query' => $queryType]);
 
@@ -117,7 +105,11 @@ foreach ($queries as $query) {
     $callsIds = [];
     $dataLoader->clearAll();
 
-    $data = GraphQL::execute($schema, $query);
+    /**
+     * @var \React\Promise\PromiseInterface $promise
+     */
+    $promise = GraphQL::execute($schema, $query);
+    $data = DataLoader::await($promise);
 
     echo "With DataLoader:\n\n";
     echo "Query: $query\n";
