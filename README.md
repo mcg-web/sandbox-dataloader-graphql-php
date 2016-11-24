@@ -3,11 +3,31 @@
 ## Queries
 
 ```graphql
-{ character1: character(id: "1000") { name friends { name }} character2: character(id: "1002") { name friends { name }}}
+{
+  character1: character(id: "1000") {
+    name
+    friends {
+      name
+    }
+  }
+  character2: character(id: "1002") {
+    name
+    friends {
+      name
+    }
+  }
+}
 ```
 
 ```graphql
-{ character1: character(id: "1000") { name } character2: character(id: "1002") { name }}
+{
+  character1: character(id: "1000") {
+    name
+  }
+  character2: character(id: "1002") {
+    name
+  }
+}
 ```
 
 ## Results
