@@ -1,7 +1,7 @@
 <?php
 
 use GraphQL\GraphQL;
-use GraphQL\Promise\Adapter\ReactPromiseAdapter;
+use GraphQL\Executor\Promise\Adapter\ReactPromiseAdapter;
 use GraphQL\Tests\StarWarsData;
 use McGWeb\PromiseFactory\Factory\ReactPromiseFactory;
 use Overblog\DataLoader\DataLoader;
