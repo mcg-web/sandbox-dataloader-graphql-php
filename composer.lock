@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ea4173d2db22a8fd98b3b4217a4776e4",
-    "content-hash": "2866bd5b2c43c5788a146971c04b6b07",
+    "hash": "83e5f12403af4bd99b71501cc158b9cd",
+    "content-hash": "dabeba55687dfcf88a5e060ba645ea3f",
     "packages": [
         {
             "name": "mcg-web/promise-factory",

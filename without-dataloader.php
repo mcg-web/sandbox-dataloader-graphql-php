@@ -15,7 +15,7 @@ $characterResolver = function ($id) use (&$calls, &$callsIds) {
 
 $schema = createSchema(
     function ($character) use ($characterResolver) {
-        return array_map($characterResolver, $character['friends']);;
+        return array_map($characterResolver, $character['friends']);
     },
     function ($root, $args) use ($characterResolver) {
         return $characterResolver($args['id']);

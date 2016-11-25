@@ -1,5 +1,5 @@
 {
-    "name": "mcg-web/sandox-daraloader-graphql-php",
+    "name": "mcg-web/sandbox-dataloader-graphql-php",
     "type": "project",
     "repositories": {
         "webonyx/graphql-php": {
@@ -21,8 +21,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Jeremiah VALERIE",
-            "email": "jeremiah@over-blog.com"
+            "name": "Jeremiah VALERIE"
         }
     ]
 }
