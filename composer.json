@@ -12,6 +12,12 @@
         "react/promise": "^2.4",
         "webonyx/graphql-php": "dev-promise"
     },
+    "autoload": {
+        "files": [
+            "common.php",
+            "vendor/webonyx/graphql-php/tests/StarWarsData.php"
+        ]
+    },
     "license": "MIT",
     "authors": [
         {

@@ -1,43 +1,28 @@
 # Sandbox DataLoader And GraphQL PHP
 
-## Queries
-
-```graphql
-{
-  character1: character(id: "1000") {
-    name
-    friends {
-      name
-    }
-  }
-  character2: character(id: "1002") {
-    name
-    friends {
-      name
-    }
-  }
-}
-```
-
-```graphql
-{
-  character1: character(id: "1000") {
-    name
-  }
-  character2: character(id: "1002") {
-    name
-  }
-}
-```
-
-## Results
+## Usages
 
 ```sh
 $ php without-dataloader.php
 
 Without DataLoader:
 
-Query: { character1: character(id: "1000") { name friends { name }} character2: character(id: "1002") { name friends { name }}}
+Query:
+ {
+  character1: character(id: "1000") {
+    name
+    friends {
+      name
+    }
+  }
+  character2: character(id: "1002") {
+    name
+    friends {
+      name
+    }
+  }
+}
+
 Response:
 {
     "data": {
@@ -88,9 +73,16 @@ calls ids: array (
 )
 
 
-Without DataLoader:
+Query:
+ {
+  character1: character(id: "1000") {
+    name
+  }
+  character2: character(id: "1002") {
+    name
+  }
+}
 
-Query: { character1: character(id: "1000") { name } character2: character(id: "1002") { name }}
 Response:
 {
     "data": {
@@ -114,7 +106,22 @@ $ php with-dataloader.php
 
 With DataLoader:
 
-Query: { character1: character(id: "1000") { name friends { name }} character2: character(id: "1002") { name friends { name }}}
+Query:
+ {
+  character1: character(id: "1000") {
+    name
+    friends {
+      name
+    }
+  }
+  character2: character(id: "1002") {
+    name
+    friends {
+      name
+    }
+  }
+}
+
 Response:
 {
     "data": {
@@ -167,9 +174,16 @@ calls ids: array (
 )
 
 
-With DataLoader:
+Query:
+ {
+  character1: character(id: "1000") {
+    name
+  }
+  character2: character(id: "1002") {
+    name
+  }
+}
 
-Query: { character1: character(id: "1000") { name } character2: character(id: "1002") { name }}
 Response:
 {
     "data": {
