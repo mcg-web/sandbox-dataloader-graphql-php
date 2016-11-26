@@ -139,7 +139,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mcg-web/graphql-php.git",
-                "reference": "9fb099b87c9a1281dd329d13ab25b1d416d24e4a"
+                "reference": "35d7d830883b264d006c864b1e5667ae72b6b065"
             },
             "require": {
                 "ext-mbstring": "*",
@@ -149,8 +149,14 @@
                 "phpunit/phpunit": "^4.8",
                 "react/promise": "^2.4"
             },
+            "suggest": {
+                "react/promise": "To use ReactPhp promise adapter"
+            },
             "type": "library",
             "autoload": {
+                "files": [
+                    "src/deprecated.php"
+                ],
                 "psr-4": {
                     "GraphQL\\": "src/"
                 }
@@ -171,7 +177,7 @@
                 "API",
                 "graphql"
             ],
-            "time": "2016-11-25 21:23:04"
+            "time": "2016-11-26 21:28:46"
         }
     ],
     "packages-dev": [],

@@ -53,4 +53,3 @@ executeQueries(
         return DataLoader::await($promise);
     }
 );
-
