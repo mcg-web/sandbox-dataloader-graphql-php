@@ -139,12 +139,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/webonyx/graphql-php.git",
-                "reference": "f3fca81e9d6616a7048a6040e2240497d837efc2"
+                "reference": "26db4c76c6e638d657b1c4dfff0c8e0b05a48906"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/f3fca81e9d6616a7048a6040e2240497d837efc2",
-                "reference": "f3fca81e9d6616a7048a6040e2240497d837efc2",
+                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/26db4c76c6e638d657b1c4dfff0c8e0b05a48906",
+                "reference": "26db4c76c6e638d657b1c4dfff0c8e0b05a48906",
                 "shasum": ""
             },
             "require": {
@@ -152,11 +152,10 @@
                 "php": ">=5.4,<8.0-DEV"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8",
-                "react/promise": "^2.4"
+                "phpunit/phpunit": "^4.8"
             },
             "suggest": {
-                "react/promise": "To use ReactPhp promise adapter"
+                "react/promise": "To use ReactPHP promise adapter"
             },
             "type": "library",
             "autoload": {
@@ -177,7 +176,7 @@
                 "api",
                 "graphql"
             ],
-            "time": "2016-12-01 09:22:15"
+            "time": "2016-12-02 21:31:01"
         }
     ],
     "packages-dev": [],
