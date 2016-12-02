@@ -8,10 +8,22 @@ use GraphQL\Schema;
 
 function renderMessage($query, $data, $calls, $callsIds)
 {
+    echo "Schema:\n";
+    echo <<<EOF
+type Character : Character {
+  id: String!
+  name: String
+  friends: [Character]
+}
+type Query {
+  character(id: String!): Character
+}\n\n
+EOF;
+
     echo "Query:\n $query\n\n";
     echo "Response:\n".json_encode($data, JSON_PRETTY_PRINT)."\n";
     echo "Resolver calls: ".var_export($calls, true)."\n";
-    echo "calls ids: ".var_export($callsIds, true)."\n";
+    echo "Resolver calls ids:\n".json_encode($callsIds, JSON_PRETTY_PRINT)."\n";
 
     echo "\n\n";
 }

@@ -2,7 +2,7 @@
 
 use GraphQL\Tests\StarWarsData;
 
-require __DIR__.'/vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 $calls = 0;
 $callsIds = [];

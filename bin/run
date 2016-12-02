@@ -1,0 +1,10 @@
+#!/usr/bin/env php
+<?php
+
+$useDataLoader = !empty($_SERVER['argv']) ? in_array('--with-dataloader', $_SERVER['argv']) : false;
+
+if ($useDataLoader) {
+    require __DIR__.'/../app/with-dataloader.php';
+} else {
+    require __DIR__.'/../app/without-dataloader.php';
+}

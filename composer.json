@@ -1,20 +1,14 @@
 {
     "name": "mcg-web/sandbox-dataloader-graphql-php",
     "type": "project",
-    "repositories": {
-        "webonyx/graphql-php": {
-            "type": "git",
-            "url": "https://github.com/mcg-web/graphql-php.git"
-        }
-    },
     "require": {
         "overblog/dataloader-php": "dev-master",
         "react/promise": "^2.4",
-        "webonyx/graphql-php": "dev-promise"
+        "webonyx/graphql-php": "dev-master"
     },
     "autoload": {
         "files": [
-            "common.php",
+            "app/common.php",
             "vendor/webonyx/graphql-php/tests/StarWarsData.php"
         ]
     },

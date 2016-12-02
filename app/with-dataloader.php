@@ -7,7 +7,7 @@ use McGWeb\PromiseFactory\Factory\ReactPromiseFactory;
 use Overblog\DataLoader\DataLoader;
 use React\Promise\Promise;
 
-require __DIR__.'/vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 $calls = 0;
 $callsIds = [];
