@@ -1,16 +1,17 @@
 <?php
 
-use GraphQL\GraphQL;
 use GraphQL\Tests\StarWarsData;
 use Overblog\DataLoader\DataLoader;
-use Overblog\PromiseAdapter\Adapter\ReactPromiseAdapter;
-use React\Promise\Promise;
+use Overblog\DataLoader\Promise\Adapter\Webonyx\GraphQL\SyncPromiseAdapter;
+use Overblog\PromiseAdapter\Adapter\WebonyxGraphQLSyncPromiseAdapter;
 
 require __DIR__.'/../vendor/autoload.php';
 
 $calls = 0;
 $callsIds = [];
-$promiseAdapter = new ReactPromiseAdapter();
+
+$graphQLSyncPromiseAdapter = new SyncPromiseAdapter();
+$promiseAdapter = new WebonyxGraphQLSyncPromiseAdapter($graphQLSyncPromiseAdapter);
 $batchLoadFn = function ($ids) use (&$calls, &$callsIds, $promiseAdapter) {
     $callsIds[] = $ids;
     ++$calls;
@@ -23,31 +24,23 @@ $dataLoader = new DataLoader($batchLoadFn, $promiseAdapter);
 
 $schema = createSchema(
     function ($character) use ($dataLoader) {
-        $onFullFilled = function ($value) use ($dataLoader) {
-            return $dataLoader->loadMany($value['friends']);
-        };
-
-        if ($character instanceof Promise) {
-            return $character->then($onFullFilled);
-        } else {
-            return $onFullFilled($character);
-        }
+        $promise = $dataLoader->loadMany($character['friends']);
+        return $promise;
     },
     function ($root, $args) use ($dataLoader) {
-        return $dataLoader->load($args['id']);
+        $promise = $dataLoader->load($args['id']);
+        return $promise;
     }
 );
 
-echo "With DataLoader (using reactPHP promise):\n\n";
+echo "With DataLoader (Using native promise):\n\n";
+
 executeQueries(
     $schema,
     $calls,
     $callsIds,
-    new \GraphQL\Executor\Promise\Adapter\ReactPromiseAdapter(),
+    $graphQLSyncPromiseAdapter,
     function () use ($dataLoader) {
         $dataLoader->clearAll();
-    },
-    function ($promise)  {
-        return DataLoader::await($promise);
     }
 );

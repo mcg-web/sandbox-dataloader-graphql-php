@@ -4,10 +4,15 @@
 
 ### Run without DataLoader
 ```sh
-$ bin/run
+bin/run
 ```
 
-### Run with DataLoader
+### Run with DataLoader using React
 ```sh
-$ bin/run --with-dataloader
+bin/run --with-dataloader
+```
+
+### Run with DataLoader using deferred (native)
+```sh
+bin/run --with-dataloader --native
 ```

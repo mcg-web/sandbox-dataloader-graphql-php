@@ -4,7 +4,12 @@
 $useDataLoader = !empty($_SERVER['argv']) ? in_array('--with-dataloader', $_SERVER['argv']) : false;
 
 if ($useDataLoader) {
-    require __DIR__.'/../app/with-dataloader.php';
+    $useNative = !empty($_SERVER['argv']) ? in_array('--native', $_SERVER['argv']) : false;
+    if ($useNative) {
+        require __DIR__.'/../app/with-dataloader-native-promise.php';
+    } else {
+        require __DIR__.'/../app/with-dataloader.php';
+    }
 } else {
     require __DIR__.'/../app/without-dataloader.php';
 }
