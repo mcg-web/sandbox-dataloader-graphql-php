@@ -1,5 +1,6 @@
 <?php
 
+use GraphQL\Executor\Promise\PromiseAdapter;
 use GraphQL\GraphQL;
 use GraphQL\Type\Definition\NonNull;
 use GraphQL\Type\Definition\ObjectType;
@@ -86,8 +87,10 @@ function createSchema(callable $friendsResolver, callable $characterResolver)
     return new Schema(['query' => $queryType]);
 }
 
-function executeQueries(Schema $schema, &$calls, &$callsIds,  callable $beforeExecute = null, callable $afterExecute = null)
+function executeQueries(Schema $schema, &$calls, &$callsIds, PromiseAdapter $promiseAdapter = null,  callable $beforeExecute = null, callable $afterExecute = null)
 {
+    GraphQL::setPromiseAdapter($promiseAdapter);
+
     foreach (getQueries() as $query) {
         $calls = 0;
         $callsIds = [];
@@ -106,14 +109,18 @@ function getQueries()
     $queries[] = <<<QUERY
 {
   character1: character(id: "1000") {
+    id
     name
     friends {
+      id
       name
     }
   }
   character2: character(id: "1002") {
+    id
     name
     friends {
+      id
       name
     }
   }
@@ -123,9 +130,11 @@ QUERY;
     $queries[] = <<<QUERY
 {
   character1: character(id: "1000") {
+    id
     name
   }
   character2: character(id: "1002") {
+    id
     name
   }
 }

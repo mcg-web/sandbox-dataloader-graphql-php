@@ -4,77 +4,50 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "29f397b02574f9a30ad80c76941533d2",
-    "content-hash": "1c58fc35ee40f02477328f09d2f561cc",
+    "hash": "e072609ed78c87692be64c24d8fdbc5f",
+    "content-hash": "b5d803e2dcec4859c9969baf3a8bcf2b",
     "packages": [
-        {
-            "name": "mcg-web/promise-factory",
-            "version": "v0.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mcg-web/promise-factory.git",
-                "reference": "036b68fabaa923c1572e132ae4314aaaf0b01ce2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mcg-web/promise-factory/zipball/036b68fabaa923c1572e132ae4314aaaf0b01ce2",
-                "reference": "036b68fabaa923c1572e132ae4314aaaf0b01ce2",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.5|^7.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.1|^5.1"
-            },
-            "suggest": {
-                "guzzlehttp/promises": "To use Guzzle promise factory",
-                "react/promise": "To use ReactPhp promise factory"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "McGWeb\\PromiseFactory\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "This library tries to create a simple promise factory standard while waiting for a psr.",
-            "keywords": [
-                "Guzzle",
-                "factory",
-                "promise",
-                "react"
-            ],
-            "time": "2016-11-15 09:03:43"
-        },
         {
             "name": "overblog/dataloader-php",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overblog/dataloader-php.git",
-                "reference": "8f6b8116d900b03519af819df9b425ebe98b1222"
+                "reference": "797c49350dd9a69b50278103c0f55ae1371fe2ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overblog/dataloader-php/zipball/8f6b8116d900b03519af819df9b425ebe98b1222",
-                "reference": "8f6b8116d900b03519af819df9b425ebe98b1222",
+                "url": "https://api.github.com/repos/overblog/dataloader-php/zipball/797c49350dd9a69b50278103c0f55ae1371fe2ae",
+                "reference": "797c49350dd9a69b50278103c0f55ae1371fe2ae",
                 "shasum": ""
             },
             "require": {
-                "mcg-web/promise-factory": "^0.2",
                 "php": "^5.5|^7.0"
             },
+            "replace": {
+                "overblog/promise-adapter": "self.version"
+            },
             "require-dev": {
-                "phpunit/phpunit": "^4.1|^5.1"
+                "guzzlehttp/promises": "^1.3.0",
+                "phpunit/phpunit": "^4.1|^5.1",
+                "react/promise": "^2.5.0",
+                "webonyx/graphql-php": "^0.9.0"
+            },
+            "suggest": {
+                "guzzlehttp/promises": "To use with Guzzle promise",
+                "react/promise": "To use with ReactPhp promise",
+                "webonyx/graphql-php": "To use with Webonyx GraphQL native promise"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.4-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
-                    "Overblog\\DataLoader\\": "src/"
+                    "Overblog\\DataLoader\\": "src/",
+                    "Overblog\\PromiseAdapter\\": "lib/promise-adapter/src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -87,31 +60,26 @@
                 "caching",
                 "dataLoader"
             ],
-            "time": "2016-11-15 09:18:59"
+            "time": "2017-02-06 16:41:33"
         },
         {
             "name": "react/promise",
-            "version": "v2.4.1",
+            "version": "2.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reactphp/promise.git",
-                "reference": "8025426794f1944de806618671d4fa476dc7626f"
+                "reference": "2760f3898b7e931aa71153852dcd48a75c9b95db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reactphp/promise/zipball/8025426794f1944de806618671d4fa476dc7626f",
-                "reference": "8025426794f1944de806618671d4fa476dc7626f",
+                "url": "https://api.github.com/repos/reactphp/promise/zipball/2760f3898b7e931aa71153852dcd48a75c9b95db",
+                "reference": "2760f3898b7e931aa71153852dcd48a75c9b95db",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "React\\Promise\\": "src/"
@@ -131,20 +99,24 @@
                 }
             ],
             "description": "A lightweight implementation of CommonJS Promises/A for PHP",
-            "time": "2016-05-03 17:50:52"
+            "keywords": [
+                "promise",
+                "promises"
+            ],
+            "time": "2016-12-22 14:09:01"
         },
         {
             "name": "webonyx/graphql-php",
-            "version": "dev-master",
+            "version": "v0.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webonyx/graphql-php.git",
-                "reference": "26db4c76c6e638d657b1c4dfff0c8e0b05a48906"
+                "reference": "c2f0749d8e9ed0edeaf7c9a206e28b1c5c45fe80"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/26db4c76c6e638d657b1c4dfff0c8e0b05a48906",
-                "reference": "26db4c76c6e638d657b1c4dfff0c8e0b05a48906",
+                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/c2f0749d8e9ed0edeaf7c9a206e28b1c5c45fe80",
+                "reference": "c2f0749d8e9ed0edeaf7c9a206e28b1c5c45fe80",
                 "shasum": ""
             },
             "require": {
@@ -176,15 +148,14 @@
                 "api",
                 "graphql"
             ],
-            "time": "2016-12-02 21:31:01"
+            "time": "2017-02-07 06:01:36"
         }
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": {
-        "overblog/dataloader-php": 20,
-        "webonyx/graphql-php": 20
+        "overblog/dataloader-php": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
