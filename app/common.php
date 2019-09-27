@@ -5,7 +5,7 @@ use GraphQL\GraphQL;
 use GraphQL\Type\Definition\NonNull;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
-use GraphQL\Schema;
+use GraphQL\Type\Schema;
 
 function renderMessage($query, $data, $calls, $callsIds)
 {
@@ -89,14 +89,24 @@ function createSchema(callable $friendsResolver, callable $characterResolver)
 
 function executeQueries(Schema $schema, &$calls, &$callsIds, PromiseAdapter $promiseAdapter = null,  callable $beforeExecute = null, callable $afterExecute = null)
 {
-    GraphQL::setPromiseAdapter($promiseAdapter);
-
     foreach (getQueries() as $query) {
         $calls = 0;
         $callsIds = [];
 
         if (null !== $beforeExecute) { $beforeExecute(); }
-        $result = GraphQL::execute($schema, $query);
+        if (null === $promiseAdapter) {
+            $result = GraphQL::executeQuery($schema, $query);
+        } else {
+            $promise = GraphQL::promiseToExecute($promiseAdapter, $schema, $query);
+            if ($promiseAdapter instanceof \GraphQL\Executor\Promise\Adapter\SyncPromiseAdapter) {
+                $result = $promiseAdapter->wait($promise)->toArray();
+            } else {
+                $result = $promise->then(static function ($r) {
+                    return $r->toArray();
+                });
+            }
+        }
+        
         if (null !== $afterExecute) { $result = $afterExecute($result); }
 
         renderMessage($query, $result, $calls, $callsIds);
