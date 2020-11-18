@@ -5,7 +5,7 @@ use GraphQL\GraphQL;
 use GraphQL\Type\Definition\NonNull;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
-use GraphQL\Schema;
+use GraphQL\Type\Schema;
 
 function renderMessage($query, $data, $calls, $callsIds)
 {
