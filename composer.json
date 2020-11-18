@@ -5,7 +5,7 @@
     "require": {
         "overblog/dataloader-php": "dev-master",
         "react/promise": "^2.4",
-        "webonyx/graphql-php": "^0.13.9"
+        "webonyx/graphql-php": "^14.3"
     },
     "autoload": {
         "files": [
